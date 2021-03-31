@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2020_11_19_172953) do
   enable_extension "plpgsql"
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "favoriter_id"
-    t.integer "favoritee_id"
+    t.bigint "favoriter_id"
+    t.bigint "favoritee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["favoritee_id"], name: "index_favorites_on_favoritee_id"
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2020_11_19_172953) do
 
   create_table "players", force: :cascade do |t|
     t.string "status"
-    t.integer "user_id"
-    t.integer "game_id"
+    t.bigint "user_id"
+    t.bigint "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_players_on_game_id"
@@ -59,4 +59,8 @@ ActiveRecord::Schema.define(version: 2020_11_19_172953) do
     t.string "api_key"
   end
 
+  add_foreign_key "favorites", "users", column: "favoritee_id"
+  add_foreign_key "favorites", "users", column: "favoriter_id"
+  add_foreign_key "players", "games"
+  add_foreign_key "players", "users"
 end

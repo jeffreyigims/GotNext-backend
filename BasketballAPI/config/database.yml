@@ -17,9 +17,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: jeffxu_development
+  # database: jeffxu_development
   pool: 5
-  username: jeffxu
+  # username: jeffxu
   password:
   timeout: 5000
  
@@ -47,8 +47,8 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: jeffxu_test
+  # database: jeffxu_test
   pool: 5
-  username: jeffxu
+  # username: jeffxu
   password:
   timeout: 5000
