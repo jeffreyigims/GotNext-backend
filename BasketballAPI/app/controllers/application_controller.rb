@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  include ActionController::Helpers
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
@@ -15,7 +16,7 @@ class ApplicationController < ActionController::API
 
   # controller tests only work if this line is commented out,
   # but always include this line in production
-  # before_action :authenticate_with_token, except: [:token, :create_user]
+  before_action :authenticate_with_token, except: [:token, :create_user]
 
   def create_user
     @user = User.new(user_params)
@@ -49,6 +50,12 @@ class ApplicationController < ActionController::API
       @current_user = User.find_by(api_key: token)
     end
   end
+
+  def current_user 
+    @current_user 
+  end 
+
+  helper_method :current_user
 
   def render_unauthorized(realm = "Application")
     self.headers["WWW-Authenticate"] = %(Token realm="#{realm.gsub(/"/, "")}")

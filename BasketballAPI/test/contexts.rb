@@ -1,10 +1,12 @@
 require './test/sets/users'
+require './test/sets/contacts'
 require './test/sets/games'
 require './test/sets/players'
 require './test/sets/favorites'
 
 module Contexts
   include Contexts::Users
+  include Contexts::Contacts
   include Contexts::Games
   include Contexts::Players
   include Contexts::Favorites
@@ -12,6 +14,8 @@ module Contexts
   def create_all
     create_users
     puts "users created"
+    create_contacts
+    puts "contacts created"
     create_games
     puts "games created"
     create_players
@@ -27,6 +31,8 @@ module Contexts
     puts "players destroyed"
     destroy_games
     puts "games destroyed"
+    destroy_contacts
+    puts "contacts destroyed"
     destroy_users
     puts "users destroyed"
   end

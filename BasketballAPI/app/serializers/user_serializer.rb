@@ -1,4 +1,4 @@
-class UserSerializer
+class UserSerializer 
   include FastJsonapi::ObjectSerializer
   attributes :id, :username, :email, :firstname, :lastname, :dob, :phone
 
@@ -8,9 +8,21 @@ class UserSerializer
     end
   end
 
-  attribute :favorites do |object|
+  attribute :favorites do |object, params|
     Favorite.for_favoriter(object.id).map do |favorite|
-      FavoriteSerializer.new(favorite).serializable_hash
+      FavoriteSerializer.new(favorite, {params: {current_user: params[:current_user]}}).serializable_hash
+    end
+  end
+
+  attribute :potentials do |object, params|
+    object.user_contacts.map do |contact|
+      UsersSerializer.new(contact.user, {params: {current_user: params[:current_user]}}).serializable_hash
+    end
+  end
+
+  attribute :contacts do |object, params|
+    object.contacts.not_user.map do |contact|
+      ContactsSerializer.new(contact).serializable_hash 
     end
   end
 

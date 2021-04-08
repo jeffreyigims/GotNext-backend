@@ -3,6 +3,6 @@ class PlayerSerializer
   attributes :id, :status
 
   attribute :game do |object|
-    GameSerializer.new(object.game).serializable_hash
+    GameSerializer.new(object.game, {params: {current_user: @current_user}}).serializable_hash
   end
 end

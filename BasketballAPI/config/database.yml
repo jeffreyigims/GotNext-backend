@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  # database: jeffxu_development
+  database: jigims_development
   pool: 5
   # username: jeffxu
   password:
@@ -47,7 +47,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  # database: jeffxu_test
+  database: jeffxu_test
   pool: 5
   # username: jeffxu
   password:

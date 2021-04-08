@@ -4,17 +4,17 @@ class FavoritesController < ApplicationController
 
   def index
     @favorites = Favorite.alphabetical_favoriter
-    render json: FavoriteSerializer.new(@favorites).serialized_json
+    render json: FavoriteSerializer.new(@favorites, {params: {current_user: @current_user}}).serialized_json
   end
 
   def show
-    render json: FavoriteSerializer.new(@favorite).serialized_json
+    render json: FavoriteSerializer.new(@favorite, {params: {current_user: @current_user}}).serialized_json
   end
 
   def create
     @favorite = Favorite.new(favorite_params)
     if @favorite.save
-      render json: FavoriteSerializer.new(@favorite).serialized_json
+      render json: FavoriteSerializer.new(@favorite, {params: {current_user: @current_user}}).serialized_json
     else
       render json: @favorite.errors, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class FavoritesController < ApplicationController
     if !@favorite.destroyed?
       render json: @favorite.errors, status: :unprocessable_entity
     else
-      render json: FavoriteSerializer.new(@favorite).serialized_json
+      render json: FavoriteSerializer.new(@favorite, {params: {current_user: @current_user}}).serialized_json
     end
   end
 

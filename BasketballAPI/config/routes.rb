@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'players/for_user', to: 'players#for_user', as: :players_for_user
   get 'players/for_game', to: 'players#for_game', as: :players_for_game
+  post 'contacts', to: 'contacts#contacts', as: :contacts
 
   resources :users
   resources :games

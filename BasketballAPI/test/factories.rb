@@ -30,4 +30,16 @@ FactoryBot.define do
     association :favoriter
     association :favoritee
   end
+
+  factory :contact do
+    firstName { "Jeffrey" }
+    lastName { "Igims" }
+    phone { "4123549286" }
+    association :user
+  end
+
+  factory :user_contact do
+    association :user
+    association :contact
+  end
 end
