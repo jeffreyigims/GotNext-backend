@@ -64,14 +64,14 @@ class ApplicationController < ActionController::API
 
   def search
     @query = params[:query]
-    @users = User.search(@query).alphabetical_name
+    @users = User.search(@query).alphabetical_name.first(20)
     render json: UsersSerializer.new(@users).serialized_json
   end
 
   def get_games
     @user_id = params[:user_id]
-    public_games = Game.public_games.upcoming
-    private_games = Game.private_games.upcoming.for_user(@user_id)
+    public_games = Game.public_games.upcoming.chronological
+    private_games = Game.private_games.upcoming.for_user(@user_id).chronological
     render json: GamesSerializer.new(public_games + private_games).serialized_json
   end
 
