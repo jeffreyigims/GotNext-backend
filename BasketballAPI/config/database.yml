@@ -14,13 +14,22 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: jigims_development
+#   pool: 5
+#   # username: jigims
+#   password:
+#   timeout: 5000
+
 development:
   adapter: postgresql
   encoding: unicode
-  database: jigims_development
+  database: damckelu5oo52g
   pool: 5
-  # username: jigims
-  password:
+  username: ariqqexwauqybb
+  password: daa02063a44f214496fe51251298e8aec3aa9cfb8366081727e6ea5aa2534122
   timeout: 5000
  
   # Connect on a TCP socket. Omitted by default since the client uses a
