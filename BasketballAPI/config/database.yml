@@ -19,7 +19,7 @@ development:
   encoding: unicode
   database: jigims_development
   pool: 5
-  username: jigims
+  # username: jigims
   password:
   timeout: 5000
  
@@ -49,6 +49,6 @@ test:
   encoding: unicode
   database: jigims_test
   pool: 5
-  username: jigims
+  # username: jigims
   password:
   timeout: 5000
