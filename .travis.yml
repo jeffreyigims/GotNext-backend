@@ -9,18 +9,19 @@ services:
   - postgresql
 # before_script:
 #   - cd BasketballAPI
+#   - bundle install
 #   - bundle exec rails db:create
 #   - bundle exec rails db:migrate
 script: 
   - ""
-# before_deploy:
-#   - cd BasketballAPI
-# deploy:
-#   provider: heroku 
-#   api_key:
-#     secure: onmwiL3PCLaKCpl6bWJ6BTmsgTATQlYgxWVgCdRb/I/F59a4Rk6cPFJZwoPGGHLO40N+rR50++KalHhYlae3YXkZVKjjuO+ZcJohuxEgmfDHShkP+2V0ZmodiOnY1l5prda152mDMxj/iBXHHnS5+rI7hVbAnRvTSEFT3N+O+gZeXtus90EoKRzG9i1QRmAOqpUbWUMmpzqP2LbzdCN4T5SNRDY2Uvqe3TM+KpfRXx25fyslaMQEEZkZr9s17XclXRSbchBa0NyjP0/vaOX98IsXWwBbZslWE3B6E3hWussWdtiTfIv2m+2otPcHAWNbZmmLeWiMXj1wViiIH7/gS4X2Za1AMcRyCFkFILh9Jb9M1rz+POwvg3ZtVa6MrhaYm/F/bkTjwIDiIXODJtgVNvS6vWP6NDKCc5Baul68l87DmmSKby05Z+uHoEXVhn75wk8ms74wp2IpJzDmqEc7qGEGJYkmw46j/FgCOZVKXX61RFhxCum0kA+jXO0h09ypPgaM2Uuwn6nFuuhNE3gE1q2U1BXoZcazJlHIxIrvsgjCU/RxJmpEEtLw4jy/dNDV3o9PZ/SqOvQOoPUm7EqPdJui8Y9oiWBatnbpaBPPv08FzTMqyg9zfpNaeDR0lfz7SeKW4Ak/3gJtWLC57N7DLhY/oqF6YBkFTJN/b+prE7I=
-#   app: bookmanager4
-#   on: main
-#   run:
-#     - "rails db:migrate"
-#     - "rails db:seed"
+before_deploy:
+  - cd BasketballAPI
+deploy:
+  provider: heroku 
+  api_key:
+    secure: NvOGjTpbJlv+OMl9pctSLy3J22umt4KSfzq+fMAqiSyxQywyDos8H3txbRojCBZfRdWPnwsBGng2tvI9dha3J563NNzyb37U00IsAA2eKKcg89fFgV+bbY26lhMqu/E/iPcsrG/+ZDFSBIK1gFgph3jdY1Ia16YmVX5Fj6D7VRPmjbObFx1uzqsUfWIfkNSanCMVY9WXpXIWeE4JJYCfuJAefecwL0Q7PxXFwgmVN4DJNBTO9qY1NMxLL3B3OXFdm0ItDf0msgNBCYgC4JyG9MSBcvcY1dnYpTg3D6VhcBmBCyM/OsxIbvGLmIQD8xdyMOFvNERIaKLfii6/tgcTUxEVY/TeUU6uPM/5YAdOAhQU0l7flOfZ4tGuDTEItVM0+tih3r9E/S0opYdSSTG+PD0pILF1NPSCgvbByJoSohGNvjFCYwu791y4Qx7FWJXtiB1+4qskoGdp5EVvNpGKISITGn6jSlijyzVsSt1eOHa5yDmOL+3xBs43gzXw1wGg2eHaJTbpgNpKxfKriO0nBbTxd1WTpxp1IZs9SKKZ5VcZk8HU8hyVm+NqblYJ65EFHJtC7MXr/Unhl58Q9velknLnDCrxBUZIr6PWUSBZzuKa3S5knxNyUC66UKxU++qZbQW4VsYyiHw0RF5ctTCdLSED9RC4BP2yWEOiTeE4GxI=
+  app: gotnext-backend
+  on: main
+  run:
+    - "rails db:migrate"
+    - "rails db:seed"
