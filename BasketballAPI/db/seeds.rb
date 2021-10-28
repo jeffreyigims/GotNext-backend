@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require './test/contexts'
+require 'factory_bot'
 
 include Contexts 
 @user = FactoryBot.create(:user, username: "jigims", email: "jjigims23@gmail.com", firstname: "JJ", lastname: "Igims", dob: 21.years.ago.to_date, phone: "4123549286", password: "secret", password_confirmation: "secret")
