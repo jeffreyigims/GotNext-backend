@@ -34,10 +34,10 @@ jobs:
         bundle install --jobs 4 --retry 3
         sudo apt-get -y install postgresql
         gem install pg
-    - name: Run tests
-      run: |
-        cd BasketballAPI
-        bundle install
-        rails db:setup
-        rails db:migrate
-        rails test
+    # - name: Run tests
+    #   run: |
+    #     cd BasketballAPI
+    #     bundle install
+    #     rails db:setup
+    #     rails db:migrate
+    #     rails test
