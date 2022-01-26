@@ -1,13 +1,15 @@
 class User < ApplicationRecord
+  include Rails.application.routes.url_helpers
   has_secure_password
 
   # Relationship
+  has_one_attached :image
   has_many :players
   has_many :contacts
   has_many :user_contacts, through: :contacts
 
   # Validations
-  validates_presence_of :email, :firstname, :lastname, :dob, :phone
+  validates_presence_of :email, :firstname, :lastname, :dob, :phone 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates_presence_of :password, :on => :create
   validates_presence_of :password_confirmation, :on => :create
@@ -27,6 +29,10 @@ class User < ApplicationRecord
 
   def games
     self.players.map{ |p| Game.chronological.find(p.game_id) }.sort_by { |g| [g.date, g.time] }
+  end
+
+  def get_image_url
+    self.image.attached? ? url_for(self.image) : nil
   end
 
   # login by username

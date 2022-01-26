@@ -19,4 +19,9 @@ class GameSerializer
       UsersSerializer.new(player.user, {params: {current_user: params[:current_user]}}).serializable_hash
     end
   end
+
+  attribute :player do |object, params|
+    player = object.players.for_user(params[:current_user]).first
+    player.nil? ? player : PlayerSerializer.new(player).serializable_hash
+  end
 end
