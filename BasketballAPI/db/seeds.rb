@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 ####
 require './test/contexts'
+require 'base64'
 
 include Contexts 
 @user = FactoryBot.create(:user, username: "jigims", email: "jjigims23@gmail.com", firstname: "JJ", lastname: "Igims", dob: 21.years.ago.to_date, phone: "4123549286", password: "secret", password_confirmation: "secret")
@@ -15,8 +16,10 @@ include Contexts
 @user6 = FactoryBot.create(:user, username: "wcolenbrander", email: "wcolenbrander@gmail.com", firstname: "Will", lastname: "Colenbrander", dob: 21.years.ago.to_date, phone: "4128602679", password: "secret", password_confirmation: "secret")
 @user7 = FactoryBot.create(:user, username: "bdawson", email: "bdawson@gmail.com", firstname: "Ben", lastname: "Dawson", dob: 21.years.ago.to_date, phone: "6163078313", password: "secret", password_confirmation: "secret")
 @user8 = FactoryBot.create(:user, username: "mdinacci", email: "mdinacci@gmail.com", firstname: "Matt", lastname: "Dinacci", dob: 21.years.ago.to_date, phone: "6102336578", password: "secret", password_confirmation: "secret")
-# create_all
 puts("Created users")
+img = Base64.encode64(File.open(Rails.root.join("db", "placeholder.png")).read)
+encoding = "data:image/png;base64,[#{img}]"
+@user.image.attach(data: encoding) 
 
 @game4 = FactoryBot.create(:game, name: "CMU Game", date: 2.days.from_now.to_date, time: Time.current, description: "a basketball game at Carnegie Mellon University", private: false, longitude: -79.94456661125692, latitude: 40.441405662286684)
 @game5 = FactoryBot.create(:game, name: "SQH Game", date: 2.days.from_now.to_date, time: Time.current, description: "a basketball game in Squirrel Hill area", private: false, longitude: -79.91960119937258, latitude: 40.43783982874116)

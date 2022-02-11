@@ -1,3 +1,5 @@
+require 'base64'
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :games]
 
@@ -56,6 +58,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:firstname, :lastname, :email, :username, :dob, :phone, :image, :password, :password_confirmation)
+    params.permit({image: :data}, :id, :firstname, :lastname, :email, :username, :dob, :phone, :image, :password, :password_confirmation)
   end
 end

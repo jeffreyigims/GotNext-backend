@@ -2,9 +2,9 @@ class UserSerializer
   include FastJsonapi::ObjectSerializer
   attributes :id, :username, :email, :firstname, :lastname, :dob, :phone
 
-  attribute :players do |object|
+  attribute :games do |object, params|
     object.players.upcoming.chronological.map do |player|
-      UserPlayerSerializer.new(player).serializable_hash
+      GameSerializer.new(player.game, {params: {current_user: params[:current_user]}}).serializable_hash
     end
   end
 
@@ -32,8 +32,4 @@ class UserSerializer
   attribute :image do |object|
     object.get_image_url()
   end 
-
-  # attributes :favoritees do |object|
-  #   Favorite.for_favoritee(object.id).user
-  # end
 end

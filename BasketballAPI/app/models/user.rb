@@ -3,7 +3,8 @@ class User < ApplicationRecord
   has_secure_password
 
   # Relationship
-  has_one_attached :image
+  # has_one_attached :image
+  has_one_base64_attached :image
   has_many :players
   has_many :contacts
   has_many :user_contacts, through: :contacts
