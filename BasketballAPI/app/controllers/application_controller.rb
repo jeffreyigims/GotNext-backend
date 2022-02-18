@@ -65,7 +65,7 @@ class ApplicationController < ActionController::API
   def search
     @query = params[:query]
     @users = User.search(@query).alphabetical_name.first(20)
-    render json: UsersSerializer.new(@users).serialized_json
+    render json: UsersSerializer.new(@users, {params: {current_user: @current_user}}).serialized_json
   end
 
   def get_games

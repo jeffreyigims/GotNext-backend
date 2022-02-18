@@ -8,9 +8,17 @@ class UserSerializer
     end
   end
 
+  # users who the user has favorited
   attribute :favorites do |object, params|
     Favorite.for_favoriter(object.id).alphabetical_favoritee.map do |favorite|
       FavoriteSerializer.new(favorite, {params: {current_user: params[:current_user]}}).serializable_hash
+    end
+  end
+
+  # users who have favorited the user 
+  attribute :favoritees do |object, params|
+    Favorite.for_favoritee(object.id).alphabetical_favoriter.map do |object|
+      UsersSerializer.new(object.favoriter, {params: {current_user: params[:current_user]}}).serializable_hash
     end
   end
 
