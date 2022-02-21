@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.chronological
-    render json: GamesSerializer.new(@games).serialized_json
+    render json: GameSerializer.new(@games).serialized_json
   end
 
   def show

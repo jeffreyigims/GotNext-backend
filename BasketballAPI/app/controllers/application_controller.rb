@@ -72,7 +72,7 @@ class ApplicationController < ActionController::API
     @user_id = params[:user_id]
     public_games = Game.public_games.upcoming.chronological
     private_games = Game.private_games.upcoming.for_user(@user_id).chronological
-    render json: GamesSerializer.new(public_games + private_games).serialized_json
+    render json: GameSerializer.new(public_games + private_games, {params: {current_user: @current_user}}).serialized_json
   end
 
   private
