@@ -8,6 +8,8 @@ class CreateGames < ActiveRecord::Migration[5.2]
       t.boolean :private
       t.float :longitude
       t.float :latitude
+      t.string :shortAddress
+      t.string :longAddress
 
       t.timestamps
     end

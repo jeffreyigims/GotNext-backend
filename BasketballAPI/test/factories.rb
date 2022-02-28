@@ -18,6 +18,8 @@ FactoryBot.define do
     private { false }
     longitude { 0.0 }
     latitude { 0.0 }
+    shortAddress { "5700 Wilkins Ave" }
+    longAddress { "5700 Wilkins Avenue, Pittsburgh, PA" }
   end
 
   factory :player do

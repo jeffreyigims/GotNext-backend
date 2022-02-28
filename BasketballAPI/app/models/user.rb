@@ -53,7 +53,7 @@ class User < ApplicationRecord
 
   def search_contacts 
     @contacts = Contact.for_phone(self.phone)
-    @contacts.map { |contact| 
+    @contacts.map { |contact|
       UserContact.new(:user => self, :contact => contact).save
     }
   end 

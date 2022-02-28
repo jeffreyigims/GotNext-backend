@@ -31,7 +31,7 @@ class UserSerializer
 
   # contacts of the user
   attribute :contacts do |object, params|
-    object.contacts.not_user.map do |contact|
+    object.contacts.alphabetical_name.not_user.map do |contact|
       ContactsSerializer.new(contact).serializable_hash 
     end
   end

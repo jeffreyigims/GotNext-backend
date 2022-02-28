@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2022_01_25_174412) do
     t.boolean "private"
     t.float "longitude"
     t.float "latitude"
+    t.string "shortAddress"
+    t.string "longAddress"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -34,6 +34,6 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.permit(:name, :date, :time, :description, :private, :latitude, :longitude)
+    params.permit(:name, :date, :time, :description, :private, :latitude, :longitude, :shortAddress, :longAddress)
   end
 end
