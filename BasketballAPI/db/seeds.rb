@@ -19,7 +19,7 @@ include Contexts
 puts("Created users")
 img = Base64.encode64(File.open(Rails.root.join("db", "placeholder.png")).read)
 encoding = "data:image/png;base64,[#{img}]"
-@user.image.attach(data: encoding) 
+# @user.image.attach(data: encoding) 
 
 @game4 = FactoryBot.create(:game, name: "CMU Game", date: 2.days.from_now.to_date, time: Time.current, description: "a basketball game at Carnegie Mellon University", private: false, longitude: -79.94456661125692, latitude: 40.441405662286684, shortAddress: "5700 Wilkins Ave", longAddress: "5700 Wilkins Avenue, Pittsburgh, PA")
 @game5 = FactoryBot.create(:game, name: "SQH Game", date: 2.days.from_now.to_date, time: Time.current, description: "a basketball game in Squirrel Hill area", private: false, longitude: -79.91960119937258, latitude: 40.43783982874116, shortAddress: "5700 Wilkins Ave", longAddress: "5700 Wilkins Avenue, Pittsburgh, PA")
