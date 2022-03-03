@@ -1,6 +1,7 @@
 class FavoritesController < ApplicationController
-
   before_action :set_favorite, only: [:show, :destroy]
+
+  include PushService
 
   def index
     @favorites = Favorite.alphabetical_favoriter
@@ -13,6 +14,7 @@ class FavoritesController < ApplicationController
 
   def create
     @favorite = Favorite.new(favorite_params)
+    send_push_favorite(favorite_params[:favoriter_id], favorite_params[:favoritee_id])
     if @favorite.save
       render json: FavoriteSerializer.new(@favorite, {params: {current_user: @current_user}}).serialized_json
     else

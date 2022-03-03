@@ -1,4 +1,10 @@
 FactoryBot.define do
+  factory :device do
+    association :user
+    platform { "ios" }
+    token { "78c9741b1e88d38bc8151144da87b3a571920c1efe3f271191e5560762fbfdf8" }
+  end
+
   factory :user do
     username { "michaeljordan" }
     password { "secret123" }

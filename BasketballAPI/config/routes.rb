@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   get 'search', to: 'application#search', as: :search
   get 'get_games', to: 'application#get_games', as: :get_games
 
+  post 'devices', to: 'devices#create', as: :create_device
   post :create_user, controller: 'application'
 end

@@ -2,6 +2,8 @@ class PlayersController < ApplicationController
 
   before_action :set_player, only: [:show, :update, :destroy]
 
+  include PushService
+
   def index
     @players = Player.chronological
     render json: PlayerSerializer.new(@players, {params: {current_user: @current_user}}).serialized_json
@@ -14,6 +16,9 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(player_params)
     if @player.save
+      if @player.status == "invited"
+        send_game_invite_push(player_params[:game_id], player_params[:user_id])
+      end 
       render json: PlayerSerializer.new(@player, {params: {current_user: @current_user}}).serialized_json
     else
       render json: @player.errors, status: :unprocessable_entity
