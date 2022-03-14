@@ -9,6 +9,7 @@ class ContactsController < ApplicationController
             u = contact["user"]
             @contact = Contact.new(:firstName => u["firstName"], :lastName => u["lastName"], :phone => u["phone"], :user_id => @user).save
         }
+        render json: UserSerializer.new(@user, {params: {current_user: @current_user}}).serialized_json
     end 
   
     def index
