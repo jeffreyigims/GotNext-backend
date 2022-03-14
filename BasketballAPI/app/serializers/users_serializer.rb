@@ -1,6 +1,14 @@
 class UsersSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :username, :email, :firstname, :lastname, :dob, :phone
+  attributes :id, :username, :email, :firstname, :lastname
+
+  attribute :dob do |object|
+    object.dob.nil? ? "" : object.dob 
+  end 
+
+  attribute :phone do |object|
+    object.phone.nil? ? "" : object.phone 
+  end 
 
   attribute :favorite do |object, params|
     fav = Favorite.for_users(params[:current_user], object).first 

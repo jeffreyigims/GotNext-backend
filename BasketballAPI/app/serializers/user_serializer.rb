@@ -2,6 +2,14 @@ class UserSerializer
   include FastJsonapi::ObjectSerializer
   attributes :id, :username, :email, :firstname, :lastname, :dob, :phone
 
+  attribute :dob do |object|
+    object.dob.nil? ? "" : object.dob 
+  end 
+
+  attribute :phone do |object|
+    object.phone.nil? ? "" : object.phone 
+  end 
+
   attribute :games do |object, params|
     object.players.upcoming.chronological.map do |player|
       GameSerializer.new(player.game, {params: {current_user: params[:current_user]}}).serializable_hash

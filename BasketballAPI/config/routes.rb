@@ -18,4 +18,5 @@ Rails.application.routes.draw do
 
   post 'devices', to: 'devices#create', as: :create_device
   post :create_user, controller: 'application'
+  post 'apple_authenticate', to: 'application#apple_authenticate', as: :apple_authenticate
 end

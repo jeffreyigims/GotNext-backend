@@ -6,9 +6,8 @@ FactoryBot.define do
   end
 
   factory :user do
+    apple { "1234567" }
     username { "michaeljordan" }
-    password { "secret123" }
-    password_confirmation { "secret123" }
     email { "michaeljordan@gmail.com" }
     firstname { "Michael" }
     lastname { "Jordan" }

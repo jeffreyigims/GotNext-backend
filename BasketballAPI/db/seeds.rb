@@ -10,18 +10,18 @@ require './test/contexts'
 require 'base64'
 
 include Contexts 
-@user = FactoryBot.create(:user, username: "jigims", email: "jjigims23@gmail.com", firstname: "JJ", lastname: "Igims", dob: 21.years.ago.to_date, phone: "4123549286", password: "secret", password_confirmation: "secret")
-@user4 = FactoryBot.create(:user, username: "tuse", email: "tuse@gmail.com", firstname: "Andrew", lastname: "Bartusiak", dob: 21.years.ago.to_date, phone: "7248847634", password: "secret", password_confirmation: "secret")
-@user5 = FactoryBot.create(:user, username: "ncastor", email: "ncastor@gmail.com", firstname: "Noah", lastname: "Castor", dob: 21.years.ago.to_date, phone: "6098403925", password: "secret", password_confirmation: "secret")
-@user6 = FactoryBot.create(:user, username: "wcolenbrander", email: "wcolenbrander@gmail.com", firstname: "Will", lastname: "Colenbrander", dob: 21.years.ago.to_date, phone: "4128602679", password: "secret", password_confirmation: "secret")
-@user7 = FactoryBot.create(:user, username: "bdawson", email: "bdawson@gmail.com", firstname: "Ben", lastname: "Dawson", dob: 21.years.ago.to_date, phone: "6163078313", password: "secret", password_confirmation: "secret")
-@user8 = FactoryBot.create(:user, username: "mdinacci", email: "mdinacci@gmail.com", firstname: "Matt", lastname: "Dinacci", dob: 21.years.ago.to_date, phone: "6102336578", password: "secret", password_confirmation: "secret")
+@user = FactoryBot.create(:user, apple: "jigims", email: "jjigims23@gmail.com", firstname: "JJ", lastname: "Igims", dob: 21.years.ago.to_date, phone: "4123549286")
+@user4 = FactoryBot.create(:user, apple: "tuse", email: "tuse@gmail.com", firstname: "Andrew", lastname: "Bartusiak", dob: 21.years.ago.to_date, phone: "7248847634")
+@user5 = FactoryBot.create(:user, apple: "ncastor", email: "ncastor@gmail.com", firstname: "Noah", lastname: "Castor", dob: 21.years.ago.to_date, phone: "6098403925")
+@user6 = FactoryBot.create(:user, apple: "wcolenbrander", email: "wcolenbrander@gmail.com", firstname: "Will", lastname: "Colenbrander", dob: 21.years.ago.to_date, phone: "4128602679")
+@user7 = FactoryBot.create(:user, apple: "bdawson", email: "bdawson@gmail.com", firstname: "Ben", lastname: "Dawson", dob: 21.years.ago.to_date, phone: "6163078313")
+@user8 = FactoryBot.create(:user, apple: "mdinacci", email: "mdinacci@gmail.com", firstname: "Matt", lastname: "Dinacci", dob: 21.years.ago.to_date, phone: "6102336578")
 puts("Created users")
 img = Base64.encode64(File.open(Rails.root.join("db", "placeholder.png")).read)
 encoding = "data:image/png;base64,[#{img}]"
 @user4.image.attach(data: encoding) 
 
-@device = FactoryBot.create(:device, user: @user4, platform: "ios", token: "78c9741b1e88d38bc8151144da87b3a571920c1efe3f271191e5560762fbfdf8")
+@device = FactoryBot.create(:device, user: @user4, platform: "ios", token: "4a02ab8ba804833968905779f474fc17811715858919a0c3efe539f598a699e0")
 
 @game4 = FactoryBot.create(:game, name: "CMU Game", date: 2.days.from_now.to_date, time: Time.current, description: "a basketball game at Carnegie Mellon University", private: false, longitude: -79.94456661125692, latitude: 40.441405662286684, shortAddress: "5700 Wilkins Ave", longAddress: "5700 Wilkins Avenue, Pittsburgh, PA")
 @game5 = FactoryBot.create(:game, name: "SQH Game", date: 2.days.from_now.to_date, time: Time.current, description: "a basketball game in Squirrel Hill area", private: false, longitude: -79.91960119937258, latitude: 40.43783982874116, shortAddress: "5700 Wilkins Ave", longAddress: "5700 Wilkins Avenue, Pittsburgh, PA")
@@ -76,4 +76,5 @@ for i in 0..64
 end 
 puts("Created favorites")
 
-@user9 = FactoryBot.create(:user, username: "andyc", email: "andyc@gmail.com", firstname: "Andy", lastname: "Chrvala", dob: 21.years.ago.to_date, phone: "4125929865", password: "secret", password_confirmation: "secret")
+@user9 = FactoryBot.create(:user, apple: "andyc", email: "andyc@gmail.com", firstname: "Andy", lastname: "Chrvala", dob: 21.years.ago.to_date, phone: "4125929865")
+@user10 = FactoryBot.create(:user, apple: "rgainer", email: "rgainer@gmail.com", firstname: "Richard", lastname: "Gainer")
