@@ -5,7 +5,7 @@ class Contact < ApplicationRecord
   has_many :user_contacts
 
   # Validations
-  validates_presence_of :firstname
+  validates_presence_of :firstName
   validates_uniqueness_of :phone, scope: %i[user_id]
 
   # Scopes
