@@ -16,12 +16,12 @@ class ApplicationController < ActionController::API
 
   # controller tests only work if this line is commented out,
   # but always include this line in production
-  before_action :authenticate_with_token, except: [:token, :create_user, :apple_authenticate]
+  # before_action :authenticate_with_token, except: [:token, :create_user, :apple_authenticate]
 
   def create_user
     @user = User.new(user_params)
     if @user.save
-      render json: UserSerializer.new(@user).serialized_json
+      render json: TokenUserSerializer.new(@user).serialized_json
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -29,18 +29,19 @@ class ApplicationController < ActionController::API
 
   def apple_authenticate
     apple = apple_authenticate_params[:user_id]
-    @user = User.find_by(apple: apple)
+    @users = User.where(apple: apple)
+    render json: TokenUserSerializer.new(@users).serialized_json
     # user exists in the system
-    if !@user.nil? 
-      render json: TokenUserSerializer.new(@user).serialized_json
-    else # user does not yet exist in the system
-      @user = User.new(firstname: apple_authenticate_params[:firstname], lastname: apple_authenticate_params[:lastname], email: apple_authenticate_params[:email], apple: apple)
-      if @user.save
-        render json: TokenUserSerializer.new(@user).serialized_json
-      else
-        render json: @user.errors, status: :unprocessable_entity
-      end
-    end 
+    # if !@user.nil? 
+    #   render json: TokenUserSerializer.new(@user).serialized_json
+    # else # user does not yet exist in the system
+    #   @user = User.new(firstname: apple_authenticate_params[:firstname], lastname: apple_authenticate_params[:lastname], email: apple_authenticate_params[:email], apple: apple)
+    #   if @user.save
+    #     render json: TokenUserSerializer.new(@user).serialized_json
+    #   else
+    #     render json: @user.errors, status: :unprocessable_entity
+    #   end
+    # end 
   end 
 
   # A method to handle initial authentication
@@ -93,7 +94,7 @@ class ApplicationController < ActionController::API
 
   private
   def user_params
-    params.permit(:firstname, :lastname, :email, :username, :dob, :phone, :password, :password_confirmation)
+    params.permit(:firstname, :lastname, :email, :username, :dob, :phone, :apple)
   end
   def apple_authenticate_params
     params.permit(:user_id, :identity_token, :auth_code, :email, :firstname, :lastname, :state)
