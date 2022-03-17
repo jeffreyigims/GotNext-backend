@@ -16,7 +16,7 @@ class ApplicationController < ActionController::API
 
   # controller tests only work if this line is commented out,
   # but always include this line in production
-  # before_action :authenticate_with_token, except: [:token, :create_user, :apple_authenticate]
+  before_action :authenticate_with_token, except: [:token, :create_user, :apple_authenticate]
 
   def create_user
     @user = User.new(user_params)
