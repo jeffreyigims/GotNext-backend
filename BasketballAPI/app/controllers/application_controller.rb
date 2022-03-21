@@ -31,17 +31,6 @@ class ApplicationController < ActionController::API
     apple = apple_authenticate_params[:user_id]
     @users = User.where(apple: apple)
     render json: TokenUserSerializer.new(@users).serialized_json
-    # user exists in the system
-    # if !@user.nil? 
-    #   render json: TokenUserSerializer.new(@user).serialized_json
-    # else # user does not yet exist in the system
-    #   @user = User.new(firstname: apple_authenticate_params[:firstname], lastname: apple_authenticate_params[:lastname], email: apple_authenticate_params[:email], apple: apple)
-    #   if @user.save
-    #     render json: TokenUserSerializer.new(@user).serialized_json
-    #   else
-    #     render json: @user.errors, status: :unprocessable_entity
-    #   end
-    # end 
   end 
 
   # A method to handle initial authentication

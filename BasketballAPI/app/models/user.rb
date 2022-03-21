@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # Validations
   validates_presence_of :email, :firstname, :lastname
   validates :apple, presence: true, uniqueness: { case_sensitive: false }
-  validates_date :dob, before: :today
+  validates_date :dob, before: :today, :allow_blank => true 
   # validates_uniqueness_of :phone
   validates_format_of :phone, with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "should be 10 digits (area code needed) and delimited with dashes only"
   validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, message: "is not a valid format"

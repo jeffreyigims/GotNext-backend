@@ -56,7 +56,7 @@ module PushService
         notification = Apnotic::Notification.new(@device.token)
         notification.alert = {
             title:  "You've been favorited!",
-            body:   "#{@favoriter.firstname} has just favorited you"
+            body:   "#{@favoriter.firstname} has favorited you"
         }
         # notification.badge = 1
         # indicates to use notification service extension which auto-increments badge number
@@ -80,7 +80,7 @@ module PushService
         notification = Apnotic::Notification.new(@device.token)
         notification.alert = {
             title:  "You've been invited!",
-            body:   "Come to the game #{@game.name}"
+            body:   "You were invited to #{@game.name}"
         }
         notification.badge = 1
         # indicates to use notification service extension which auto-increments badge number
