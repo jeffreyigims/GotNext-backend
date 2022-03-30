@@ -1,4 +1,13 @@
 class TokenUserSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :username, :api_key
+  attributes :api_key
+
+  attribute :existed do |object, params|
+    params[:existed] 
+  end 
+
+  attribute :user do |object|
+    UserSerializer.new(object, {params: {current_user: object.id}}).serializable_hash
+  end
+
 end

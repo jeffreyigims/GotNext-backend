@@ -2,7 +2,7 @@ require "apnotic"
 module PushService
 
     def new_connection
-        url = "https://api.sandbox.push.apple.com:443"
+        url = "https://api.push.apple.com:443"
         cert = Rails.root.join("lib", "notifications", "authkey.p8")
         puts(cert)
         connection = Apnotic::Connection.new(auth_method: :token, cert_path: cert, key_id: "NX5X3NJ8JG", team_id: "5WRQ355X9A", url: url)
@@ -45,7 +45,7 @@ module PushService
         # notification.badge = 1
         # indicates to use notification service extension which auto-increments badge number
         notification.mutable_content = 1
-        notification.topic = "com.example.basketball-frontend"
+        notification.topic = "com.GotNextCompany.GotNext"
         send_one(notification)
     end 
 
@@ -61,7 +61,7 @@ module PushService
         # notification.badge = 1
         # indicates to use notification service extension which auto-increments badge number
         notification.mutable_content = 1
-        notification.topic = "com.example.basketball-frontend"
+        notification.topic = "com.GotNextCompany.GotNext"
         # did the favoritee already favorite the favoriter
         favorited = !Favorite.for_users(favoritee_id, favoriter_id).empty?
         notification.custom_payload = {
@@ -85,7 +85,7 @@ module PushService
         notification.badge = 1
         # indicates to use notification service extension which auto-increments badge number
         notification.mutable_content = 1
-        notification.topic = "com.example.basketball-frontend"
+        notification.topic = "com.GotNextCompany.GotNext"
         notification.custom_payload = {
             "type": "invite",
             "data": {
@@ -93,6 +93,7 @@ module PushService
             }
         }
         send_one(notification)
+        puts @device.token
     end 
 
 end

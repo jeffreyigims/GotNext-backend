@@ -6,20 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 ####
+# rails db:reset && heroku pg:reset --confirm gotnext-backend && heroku pg:push jigims_development DATABASE_URL -a gotnext-backend 
 require './test/contexts'
 require 'base64'
 
 include Contexts 
 @user = FactoryBot.create(:user, apple: "jigims", email: "jjigims23@gmail.com", firstname: "JJ", lastname: "Igims", dob: 21.years.ago.to_date, phone: "4123549286")
-@user4 = FactoryBot.create(:user, apple: "tuse", email: "tuse@gmail.com", firstname: "Andrew", lastname: "Bartusiak", dob: 21.years.ago.to_date, phone: "7248847634")
-@user5 = FactoryBot.create(:user, apple: "ncastor", email: "ncastor@gmail.com", firstname: "Noah", lastname: "Castor", dob: 21.years.ago.to_date, phone: "6098403925")
-@user6 = FactoryBot.create(:user, apple: "wcolenbrander", email: "wcolenbrander@gmail.com", firstname: "Will", lastname: "Colenbrander", dob: 21.years.ago.to_date, phone: "4128602679")
-@user7 = FactoryBot.create(:user, apple: "bdawson", email: "bdawson@gmail.com", firstname: "Ben", lastname: "Dawson", dob: 21.years.ago.to_date, phone: "6163078313")
-@user8 = FactoryBot.create(:user, apple: "mdinacci", email: "mdinacci@gmail.com", firstname: "Matt", lastname: "Dinacci", dob: 21.years.ago.to_date, phone: "6102336578")
+@user4 = FactoryBot.create(:user, apple: "mjordan", email: "mjordan@gmail.com", firstname: "Michael", lastname: "Jordan", dob: 21.years.ago.to_date, phone: "7248847634")
+@user5 = FactoryBot.create(:user, apple: "scurry", email: "scurry@gmail.com", firstname: "Stephen", lastname: "Curry", dob: 21.years.ago.to_date, phone: "6098403925")
+@user6 = FactoryBot.create(:user, apple: "ljames", email: "ljames@gmail.com", firstname: "LeBron", lastname: "James", dob: 21.years.ago.to_date, phone: "4128602679")
+@user7 = FactoryBot.create(:user, apple: "rwestbrook", email: "rwestbrook@gmail.com", firstname: "Russell", lastname: "Westbrook", dob: 21.years.ago.to_date, phone: "6163078313")
+@user8 = FactoryBot.create(:user, apple: "kdurant", email: "kdurant@gmail.com", firstname: "Kevin", lastname: "Durant", dob: 21.years.ago.to_date, phone: "6102336578")
 puts("Created users")
 img = Base64.encode64(File.open(Rails.root.join("db", "placeholder.png")).read)
 encoding = "data:image/png;base64,[#{img}]"
-@user4.image.attach(data: encoding) 
+# @user4.image.attach(data: encoding) 
 
 @device = FactoryBot.create(:device, user: @user, platform: "ios", token: "4f191c5fa697cbd821986570183bafa0fed6dd24c064e9ce9752d8278bd65ffe")
 

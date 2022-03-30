@@ -2,7 +2,6 @@ class User < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   # Relationship
-  # has_one_attached :image
   has_one_base64_attached :image
   has_many :players
   has_many :contacts
@@ -14,7 +13,7 @@ class User < ApplicationRecord
   validates :apple, presence: true, uniqueness: { case_sensitive: false }
   validates_date :dob, before: :today, :allow_blank => true 
   # validates_uniqueness_of :phone
-  validates_format_of :phone, with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "should be 10 digits (area code needed) and delimited with dashes only"
+  validates_format_of :phone, with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "should be 10 digits (area code needed) and delimited with dashes only", :allow_blank => true 
   validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, message: "is not a valid format"
 
   # Scopes
@@ -40,6 +39,7 @@ class User < ApplicationRecord
   # callback that generates the API key
   before_create :generate_api_key
   before_create :generate_unique_username
+  before_save :strip_phone
   after_save :search_contacts, :on => :create
 
   private
@@ -57,6 +57,10 @@ class User < ApplicationRecord
     end 
     self.username = username
   end 
+
+  def strip_phone
+    self.phone = self.phone.tr("^0-9", "")   
+  end
 
   def search_contacts 
     @contacts = Contact.for_phone(self.phone)
