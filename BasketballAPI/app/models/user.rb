@@ -59,7 +59,9 @@ class User < ApplicationRecord
   end 
 
   def strip_phone
-    self.phone = self.phone.tr("^0-9", "")   
+    if !self.phone.nil?
+      self.phone = self.phone.tr("^0-9", "")   
+    end 
   end
 
   def search_contacts 
