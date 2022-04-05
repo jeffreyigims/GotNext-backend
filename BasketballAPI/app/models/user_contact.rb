@@ -10,7 +10,7 @@ class UserContact < ApplicationRecord
 
   def unique_phone
     if self.contact.user.phone == self.contact.phone
-      errors.add(:profile_id, "Duplicate phone report")
+      errors.add(:profile_id, "[INFO] duplicate phone report")
     end
   end
 

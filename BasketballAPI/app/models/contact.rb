@@ -15,14 +15,14 @@ class Contact < ApplicationRecord
   scope :not_user, -> { left_outer_joins(:user_contacts).where('user_contacts.user_id IS NULL') }
   scope :alphabetical_name, -> { order('"firstName", "lastName"') }
 
-after_save :search_users, :on => :create
+  after_save :search_users, :on => :create
 
-private
-def search_users 
+  private
+  def search_users 
     @users = User.for_phone(self.phone)
-  @users.map { |user| 
-    UserContact.new(:user => user, :contact => self).save
-  }
-end 
+    @users.map { |user| 
+      UserContact.new(:user => user, :contact => self).save
+    }
+  end 
 
 end

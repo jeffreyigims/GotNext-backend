@@ -6,7 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 ####
-# rails db:reset && heroku pg:reset --confirm gotnext-backend && heroku pg:push jigims_development DATABASE_URL -a gotnext-backend 
+'''
+rails db:reset && heroku pg:reset --confirm gotnext-backend && heroku pg:push jigims_development DATABASE_URL -a gotnext-backend 
+'''
 require './test/contexts'
 require 'base64'
 
