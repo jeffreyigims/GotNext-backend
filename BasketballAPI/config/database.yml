@@ -52,3 +52,20 @@ test:
   # username: jigims
   password:
   timeout: 5000
+
+# production:
+#   <<: *default
+#   host: <%= ENV["DB_HOST"] %>
+#   port: 5432
+#   database: <%= ENV["DB_DATABASE"] %>
+#   username: <%= ENV["DB_USERNAME"] %>
+#   password: <%= ENV["DB_PASSWORD"] %>
+
+production:
+  # <<: *default
+  adapter: postgresql
+  host: gotnext-db.postgres.database.azure.com
+  port: 5432
+  database: postgres
+  username: jigims23
+  password: 106WestChester1523319!
