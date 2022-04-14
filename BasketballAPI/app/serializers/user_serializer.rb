@@ -48,4 +48,9 @@ class UserSerializer
   attribute :image do |object|
     object.get_image_url()
   end 
+
+  attribute :app_link do |object|
+    "https://apps.apple.com/us/app/gotnextgame/id1615780129" 
+  end 
+
 end

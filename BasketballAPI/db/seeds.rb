@@ -8,6 +8,8 @@
 ####
 '''
 rails db:reset && heroku pg:reset --confirm gotnext-backend && heroku pg:push jigims_development DATABASE_URL -a gotnext-backend 
+pg_dump -Fc -v --host=localhost --username=jeffreyigims --dbname=jigims_development -f /Users/jeffreyigims/Desktop/GotNextDB.dump 
+pg_restore -v --no-owner --host=gotnext-db.postgres.database.azure.com --port=5432 --username=jigims23 --dbname=postgres /Users/jeffreyigims/Desktop/GotNextDB.dump -c
 '''
 require './test/contexts'
 require 'base64'
