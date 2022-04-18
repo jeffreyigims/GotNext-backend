@@ -13,8 +13,12 @@ pg_restore -v --no-owner --host=gotnext-db.postgres.database.azure.com --port=54
 '''
 require './test/contexts'
 require 'base64'
-
 include Contexts 
+
+
+
+
+end 
 @user = FactoryBot.create(:user, apple: "jigims", email: "jjigims23@gmail.com", firstname: "JJ", lastname: "Igims", dob: 21.years.ago.to_date, phone: "4123549286")
 @user4 = FactoryBot.create(:user, apple: "mjordan", email: "mjordan@gmail.com", firstname: "Michael", lastname: "Jordan", dob: 21.years.ago.to_date, phone: "7248847634")
 @user5 = FactoryBot.create(:user, apple: "scurry", email: "scurry@gmail.com", firstname: "Stephen", lastname: "Curry", dob: 21.years.ago.to_date, phone: "6098403925")
